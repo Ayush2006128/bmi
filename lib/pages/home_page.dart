@@ -13,6 +13,13 @@ class _HomePageState extends State<HomePage> {
   final TextEditingController weightController = TextEditingController();
 
   @override
+  void dispose() {
+    heightController.dispose();
+    weightController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
@@ -62,9 +69,10 @@ class _HomePageState extends State<HomePage> {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                double height = double.parse(heightController.text);
-                double weight = double.parse(weightController.text);
-                final bmi = bmiLogic(height: height, weight: weight);
+                final bmi = bmiLogic(
+                  height: double.parse(heightController.text),
+                  weight: double.parse(weightController.text),
+                );
                 print(bmi);
               },
               style: ElevatedButton.styleFrom(
