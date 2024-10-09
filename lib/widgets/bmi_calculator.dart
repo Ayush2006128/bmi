@@ -1,7 +1,7 @@
 import 'package:bmi/bloc/bmi_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-// TODO: Fix render box error.
+
 class BmiCalculator extends StatelessWidget {
   BmiCalculator({super.key});
 
@@ -22,8 +22,13 @@ class BmiCalculator extends StatelessWidget {
                       padding: EdgeInsets.all(8.0),
                       child: Text("height"),
                     ),
-                    TextField(
-                      controller: heightCon,
+                    Expanded(
+                      child: SizedBox(
+                        width: double.infinity,
+                        child: TextField(
+                          controller: heightCon,
+                        ),
+                      ),
                     ),
                   ],
                 ),
@@ -33,28 +38,40 @@ class BmiCalculator extends StatelessWidget {
                       padding: EdgeInsets.all(8.0),
                       child: Text("weight"),
                     ),
-                    TextField(
-                      controller: weightCon,
+                    Expanded(
+                      child: SizedBox(
+                        width: double.infinity,
+                        child: TextField(
+                          controller: weightCon,
+                        ),
+                      ),
                     ),
                   ],
                 ),
-                ElevatedButton(
-                  onPressed: () {
-                    context.read<BmiBloc>().add(CalculateBmiEvent(
-                        weight: double.parse(weightCon.text),
-                        height: double.parse(heightCon.text)));
-                  },
-                  child: const Text("submit"),
-                )
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      context.read<BmiBloc>().add(CalculateBmiEvent(
+                          weight: double.parse(weightCon.text),
+                          height: double.parse(heightCon.text)));
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.black,
+                      foregroundColor: Colors.white,
+                    ),
+                    child: const Text("submit"),
+                  ),
+                ),
               ],
             ),
           );
         }
         return Center(
           child: Text(
-                'Your BMI is: ${state.bmi!.toStringAsFixed(20)}',
-                style: const TextStyle(fontSize: 24),
-              ),
+            'Your BMI is: ${state.bmi!.toStringAsFixed(2)}',
+            style: const TextStyle(fontSize: 24),
+          ),
         );
       },
     );
