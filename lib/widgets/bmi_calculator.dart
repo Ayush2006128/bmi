@@ -1,6 +1,7 @@
 import 'package:bmi/bloc/bmi_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lottie/lottie.dart';
 
 class BmiCalculator extends StatelessWidget {
   BmiCalculator({super.key});
@@ -68,9 +69,21 @@ class BmiCalculator extends StatelessWidget {
           );
         }
         return Center(
-          child: Text(
-            'Your BMI is: ${state.bmi!.toStringAsFixed(2)}',
-            style: const TextStyle(fontSize: 24),
+          child: Column(
+            children: [
+              SizedBox(
+                width: 500,
+                height: 500,
+                child: Lottie.asset('assets/bmi_low.json'),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  'Your BMI is: ${state.bmi!.toStringAsFixed(2)}',
+                  style: const TextStyle(fontSize: 24),
+                ),
+              ),
+            ],
           ),
         );
       },
