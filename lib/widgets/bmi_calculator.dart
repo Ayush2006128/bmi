@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:bmi/bloc/bmi_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -74,7 +76,7 @@ class BmiCalculator extends StatelessWidget {
               SizedBox(
                 width: 500,
                 height: 500,
-                child: Lottie.asset('assets/bmi_low.json'),
+                child: Lottie.file(File('assets/bmi_low.json')),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
