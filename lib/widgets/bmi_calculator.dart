@@ -14,7 +14,7 @@ class BmiCalculator extends StatelessWidget {
       return "assets/bmi_high.svg";
     } else if (bmi >= 18 && bmi <= 30) {
       return "assets/bmi_normal.svg";
-    } else if (bmi < 18 ) {
+    } else if (bmi < 18) {
       return "assets/bmi_low.svg";
     } else {
       return "assets/bmi_high.svg";
@@ -100,6 +100,17 @@ class BmiCalculator extends StatelessWidget {
                   child: Text(
                     'Your BMI is: ${state.bmi!.toStringAsFixed(2)}',
                     style: const TextStyle(fontSize: 24),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ElevatedButton(
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.black,
+                      foregroundColor: Colors.white,
+                    ),
+                    child: const Text('save'),
                   ),
                 ),
               ],
