@@ -1,3 +1,5 @@
+import 'package:hive/hive.dart';
+
 class BmiData {
   final double bmi;
   final DateTime timestamp;
@@ -17,4 +19,28 @@ class BmiData {
       'timestamp': timestamp,
     };
   }
+}
+
+// craete a adapter 
+class BmiDataAdapter implements TypeAdapter<BmiData> {
+  @override
+  final int typeId = 0;
+
+  @override
+  BmiData read(BinaryReader reader) {
+    final fields = reader.readMap();
+    return BmiData(
+      bmi: fields['bmi'] as double,
+      timestamp: DateTime.fromMicrosecondsSinceEpoch(fields['timestamp'] as int),
+    );
+  }
+
+  @override
+  void write(BinaryWriter writer, BmiData obj) {
+    writer.writeMap({
+      'bmi': obj.bmi,
+      'timestamp': obj.timestamp.microsecondsSinceEpoch,
+    });
+  }
+
 }
