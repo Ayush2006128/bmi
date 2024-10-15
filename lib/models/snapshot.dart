@@ -1,20 +1,20 @@
-class BmiSnapshot {
+class BmiData {
   final double bmi;
-  final DateTime time;
+  final DateTime timestamp;
 
-  const BmiSnapshot({required this.bmi, required this.time});
+  const BmiData({required this.bmi, required this.timestamp});
 
-  factory BmiSnapshot.fromJson(Map<String, dynamic> json) {
-    return BmiSnapshot(
+  factory BmiData.fromJson(Map<String, dynamic> json) {
+    return BmiData(
       bmi: json['bmi'],
-      time: DateTime.fromMicrosecondsSinceEpoch(json['timestamo']),
+      timestamp: DateTime.fromMicrosecondsSinceEpoch(json['timestamo']),
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
       'bmi': bmi,
-      'timestamp': time,
+      'timestamp': timestamp,
     };
   }
 }
