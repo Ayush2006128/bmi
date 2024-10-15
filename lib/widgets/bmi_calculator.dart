@@ -1,13 +1,25 @@
 import 'package:bmi/bloc/bmi_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lottie/lottie.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class BmiCalculator extends StatelessWidget {
   BmiCalculator({super.key});
 
   final TextEditingController heightCon = TextEditingController();
   final TextEditingController weightCon = TextEditingController();
+
+  String _getSVG(double bmi) {
+    if (bmi <= 30 && bmi >= 18) {
+      return "assets/bmi_high.svg";
+    } else if (bmi >= 18 && bmi <= 30) {
+      return "assets/bmi_normal.svg";
+    } else if (bmi < 18 ) {
+      return "assets/bmi_low.svg";
+    } else {
+      return "assets/bmi_high.svg";
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,8 +38,11 @@ class BmiCalculator extends StatelessWidget {
                     Expanded(
                       child: SizedBox(
                         width: double.infinity,
-                        child: TextField(
-                          controller: heightCon,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: TextField(
+                            controller: heightCon,
+                          ),
                         ),
                       ),
                     ),
@@ -42,8 +57,11 @@ class BmiCalculator extends StatelessWidget {
                     Expanded(
                       child: SizedBox(
                         width: double.infinity,
-                        child: TextField(
-                          controller: weightCon,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: TextField(
+                            controller: weightCon,
+                          ),
                         ),
                       ),
                     ),
@@ -75,7 +93,7 @@ class BmiCalculator extends StatelessWidget {
                 SizedBox(
                   width: 500,
                   height: 500,
-                  child: Lottie.asset('assets/bmi_low.json', animate: false),
+                  child: SvgPicture.asset(_getSVG(state.bmi ?? 0)),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
