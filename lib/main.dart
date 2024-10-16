@@ -1,13 +1,13 @@
 import 'package:bmi/models/snapshot.dart';
 import 'package:bmi/pages/home_page.dart';
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
+import 'package:hive_flutter/adapters.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  Hive.init('/');
+  await Hive.initFlutter();
   Hive.registerAdapter(BmiDataAdapter());
-  await Hive.openBox<BmiData>('bmi_data');
+  await Hive.openBox('mybox');
   runApp(const MyApp());
 }
 
