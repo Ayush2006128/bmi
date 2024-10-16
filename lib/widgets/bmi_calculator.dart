@@ -27,14 +27,19 @@ class BmiCalculator extends StatelessWidget {
     return BlocBuilder<BmiBloc, BmiState>(
       builder: (context, state) {
         if (state is BmiInitial) {
-          return BmiForm(
-            heightCon: heightCon,
-            weightCon: weightCon,
-            onSubmit: () {
-              context.read<BmiBloc>().add(CalculateBmiEvent(
-                  weight: double.parse(weightCon.text),
-                  height: double.parse(heightCon.text)));
-            },
+          return Center(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: BmiForm(
+                heightCon: heightCon,
+                weightCon: weightCon,
+                onSubmit: () {
+                  context.read<BmiBloc>().add(CalculateBmiEvent(
+                      weight: double.parse(weightCon.text),
+                      height: double.parse(heightCon.text)));
+                },
+              ),
+            ),
           );
         }
         return Center(

@@ -13,7 +13,13 @@ class BmiForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
+    return Container(
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.black),
+        borderRadius: BorderRadius.circular(10),
+      ),
+      width: MediaQuery.of(context).size.width*9,
+      height: MediaQuery.of(context).size.height*8,
       child: Column(
         children: [
           Row(
