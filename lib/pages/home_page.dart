@@ -11,7 +11,9 @@ class HomePage extends StatelessWidget {
     return BlocProvider(
       create: (context) => BmiBloc(),
       child: Scaffold(
+        backgroundColor: Colors.white,
         appBar: AppBar(
+          backgroundColor: Colors.transparent,
           title: const Text("BMI Calc"),
         ),
         body: BmiCalculator(),
