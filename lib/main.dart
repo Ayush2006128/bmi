@@ -1,5 +1,6 @@
 import 'package:bmi/models/snapshot.dart';
 import 'package:bmi/pages/bmi_page.dart';
+import 'package:bmi/pages/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 
@@ -16,9 +17,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: BmiPage(),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const HomePage(),
+        '/bmi_page': (context) => const BmiPage()
+      },
     );
   }
 }
