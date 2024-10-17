@@ -1,3 +1,5 @@
+// ignore_for_file: unused_local_variable
+
 import 'package:bmi/models/snapshot.dart';
 import 'package:bmi/pages/bmi_page.dart';
 import 'package:bmi/pages/home_page.dart';
@@ -8,7 +10,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
   Hive.registerAdapter(BmiDataAdapter());
-  await Hive.openBox('mybox');
+  Box<BmiData> mybox = await Hive.openBox('mybox');
   runApp(const MyApp());
 }
 
