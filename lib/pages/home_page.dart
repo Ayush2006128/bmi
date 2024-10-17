@@ -1,4 +1,6 @@
 import 'package:bmi/services/database.dart';
+import 'package:bmi/utils/parse_month.dart';
+import 'package:bmi/widgets/list_tile.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -19,9 +21,20 @@ class _HomePageState extends State<HomePage> {
       body: FutureBuilder(
         future: getSnapshot(),
         builder: (context, snapshot) {
-          if (snapshot.hasData) {
+          if (snapshot.data!.isNotEmpty) {
             return Center(
-              child: Text("${snapshot.data!.length}"),
+              child: ListView.builder(
+                itemCount: snapshot.data!.length,
+                itemBuilder: (context, index) {
+                  final month = getMonth(snapshot.data![index].timestamp.month);
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: MyListTile(
+                        heading: 'BMI: ${snapshot.data![index].bmi}',
+                        subtitle: month),
+                  );
+                },
+              ),
             );
           } else {
             return const Center(
