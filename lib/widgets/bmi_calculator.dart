@@ -15,7 +15,7 @@ class BmiCalculator extends StatelessWidget {
   String _getSVG(double bmi) {
     if (bmi <= 30 && bmi >= 18) {
       return "assets/bmi_high.svg";
-    } else if (bmi >= 18 && bmi <= 30) {
+    } else if (bmi >= 18 && bmi < 30) {
       return "assets/bmi_normal.svg";
     } else if (bmi < 18) {
       return "assets/bmi_low.svg";
